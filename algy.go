@@ -126,7 +126,7 @@ func evalPostfix(raw string) string {
 
 	for _, e := range post {
 		if numericMap[rune(e[0])] {
-			scan.Put(strings(e))
+			scan.Put(string(e))
 			continue
 		}
 
@@ -139,22 +139,21 @@ func evalPostfix(raw string) string {
 				a, _ = strconv.Atoi(scan.Pop())
 
 				switch r {
-					case '+':
-						c = a + b
-					case '-':
-						c = a - b
-					case '*':
-						c = a * b
-					case '/':
-						c = a / b
-					case '^':
-						c = a ^ b
+				case '+':
+					c = a + b
+				case '-':
+					c = a - b
+				case '*':
+					c = a * b
+				case '/':
+					c = a / b
+				case '^':
+					c = a ^ b
 				}
 
 				scan.Put(strconv.Itoa(c))
-				}
 			}
 		}
-		return scan.Peek()
 	}
+	return scan.Peek()
 }
